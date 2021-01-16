@@ -1,0 +1,23 @@
+{
+  "name": "awesomeList",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamGoher/awesomeList.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamGoher/awesomeList/issues"
+  },
+  "homepage": "https://github.com/SamGoher/awesomeList#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
