@@ -1,9 +1,9 @@
 # AwesomeList
 
-## Api Documentation:
+### Api Documentation:
 https://awesomelist.docs.apiary.io/
 
 ----------------------------------------------
 
-## Deployment:
+### Deployment:
 https://awesome-list-1.herokuapp.com/
