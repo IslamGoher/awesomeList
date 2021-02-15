@@ -24,6 +24,17 @@ dotenv.config({path: `./config/config.env`});
 // use morgan
 if(process.env.NODE_ENV === `development`) {
   app.use(morgan(`dev`));
+
+  // auto reload frontend files -> just for development <-
+  const livereload = require("livereload");
+  const connectLivereload = require("connect-livereload");
+
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.watch(path.join(__dirname, 'public'));
+  liveReloadServer.watch(path.join(__dirname, 'views'));
+
+  app.use(connectLivereload());
+  
 }
 
 // Connect to mongodb
