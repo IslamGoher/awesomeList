@@ -7,6 +7,10 @@ const morgan = require(`morgan`);
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
+// load route files
+const auth = require(`./routes/auth`);
+const lists = require(`./routes/lists`);
+
 // Add config files
 const connectDB = require(`./config/db`);
 
@@ -43,7 +47,8 @@ app.use(require('express-session')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Add routes files
-
+app.use(auth);
+app.use(lists);
 
 // setting port
 const port = process.env.PORT || 3000;
