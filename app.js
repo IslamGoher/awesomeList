@@ -6,7 +6,7 @@ const dotenv = require(`dotenv`);
 const morgan = require(`morgan`);
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-
+const {errorHandler} = require(`./middlewares/errorHandler`);
 // load route files
 const auth = require(`./routes/auth`);
 const lists = require(`./routes/lists`);
@@ -60,6 +60,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Add routes files
 app.use(auth);
 app.use(lists);
+
+// use error handler middleware
+app.use(errorHandler);
 
 // setting port
 const port = process.env.PORT || 3000;
