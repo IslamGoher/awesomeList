@@ -10,6 +10,7 @@ const {errorHandler} = require(`./middlewares/errorHandler`);
 // load route files
 const auth = require(`./routes/auth`);
 const lists = require(`./routes/lists`);
+const {getError} = require(`./controllers/error`);
 
 // Add config files
 const connectDB = require(`./config/db`);
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Add routes files
 app.use(auth);
 app.use(lists);
+app.use(getError);
 
 // use error handler middleware
 app.use(errorHandler);
