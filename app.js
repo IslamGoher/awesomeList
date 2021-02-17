@@ -48,11 +48,14 @@ let store = new MongoDBStore({
 });
 
 // Connect to session
-app.use(require('express-session')({
+app.use(session({
   secret: process.env.SESSION_SECRET,
   store: store,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 30*24*60*60*1000 // 30 days
+  }
 }));
 
 // Access to public folder
