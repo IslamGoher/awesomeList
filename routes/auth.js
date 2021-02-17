@@ -25,6 +25,6 @@ router.post(`/api/v1/signup`, notLoggedIn, postSignup);
 // @route   DELETE `/api/v1/logout`
 // @desc    logout and clear session
 // @access  private
-router.post(`/api/v1/logout`, loggedIn, deleteLogout);
+router.delete(`/api/v1/logout`, loggedIn, deleteLogout);
 
 module.exports = router;

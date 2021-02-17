@@ -44,11 +44,10 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 
   // create session for user
   req.session.user = currentUser._id;
+  req.session.loggedIn = true;
 
-  res.status(302).json({
-    "success": "true",
-    "message": "user signed in successfully." 
-  });
+  // send response
+  res.status(302).redirect(`/`);
 
 });
 
@@ -58,9 +57,37 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 exports.postSignup = asyncHandler(async (req, res, next) => {
 
   // validation: check if there's name, email and password
+  const user = new Validation(req.body.params);
+
+  // set required properties
+  user.required(`name`, `email`, `password`);
+
+  // validate values
+  user.validator.name.minLength(5);
+  user.validator.name.maxLength(30);
+  user.validator.email.isEmail();
+  user.validator.password.minLength(8);
+
   // check if email not exist
+  const currentUser = await User.findOne({email: req.body.params.email});
+
+  if(currentUser) {
+    return next(new ErrorResponse(401, `this email is already exists.`));
+  }
+
+  // hash password
+  const hashedPassword = await bcrypt.hash(req.body.params.password, 12);
+  req.body.params.password = hashedPassword;
+
   // create new user
+  const newUser = await User.create(req.body.params);
+
   // create session data for new user
+  req.session.user = newUser._id;
+  req.session.loggedIn = true;
+
+  // send response
+  res.status(302).redirect(`/`);
 
 });
 
@@ -70,6 +97,12 @@ exports.postSignup = asyncHandler(async (req, res, next) => {
 exports.deleteLogout = asyncHandler(async (req, res, next) => {
 
   // destroy session
-  // redirect user to login page
+  req.session.destroy(() => {
+
+    // send response
+    res.status(204).redirect(`/auth`);
+
+  });
+  
 
 });
