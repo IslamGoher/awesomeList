@@ -1,7 +1,8 @@
 # AwesomeList
 
-### Api Documentation:
+### Api Documentations:
 https://awesomelist.docs.apiary.io/
+https://documenter.getpostman.com/view/12847566/TWDWJwsJ
 
 ----------------------------------------------
 
