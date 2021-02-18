@@ -2,7 +2,7 @@
 const path = require(`path`);
 const bcrypt = require(`bcrypt`);
 const asyncHandler = require(`../middlewares/asyncHandler`);
-const Validation = require(`../utils/validation`);
+const {Validation} = require(`../utils/validation`);
 const User = require(`../models/user`);
 const ErrorResponse = require(`../utils/errorResponse.js`);
 
@@ -77,10 +77,13 @@ exports.postSignup = asyncHandler(async (req, res, next) => {
 
   // hash password
   const hashedPassword = await bcrypt.hash(req.body.params.password, 12);
-  req.body.params.password = hashedPassword;
 
   // create new user
-  const newUser = await User.create(req.body.params);
+  const newUser = await User.create({
+    name: req.body.params.name,
+    email: req.body.params.email,
+    password: hashedPassword
+  });
 
   // create session data for new user
   req.session.user = newUser._id;

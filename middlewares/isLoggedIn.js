@@ -11,7 +11,7 @@ exports.loggedIn = (req, res, next) => {
   
   if(req.session.loggedIn) {
 
-    req.user = req.session;
+    req.user = req.session.user;
     next();
 
   } else {

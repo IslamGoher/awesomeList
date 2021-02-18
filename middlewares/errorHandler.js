@@ -1,3 +1,6 @@
+// application requirement
+const ErrorResponse = require(`../utils/errorResponse`);
+
 exports.errorHandler = (err, req, res, next) => {
 
   // logging error to console for dev
@@ -5,6 +8,12 @@ exports.errorHandler = (err, req, res, next) => {
 
   let error = {...err};
   error.message = err.message
+
+  // handle CastError
+  if(err.name === `CastError`) {
+    const message = `invalid id.`;
+    error = new ErrorResponse(400, message);
+  }
 
   // send error response to client
   res.status(error.statusCode || 500).json({

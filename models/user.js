@@ -17,10 +17,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, `please add password.`]
-  },
-  lists: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: `lists`
   }
 });
 
