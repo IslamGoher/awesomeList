@@ -4,7 +4,8 @@ const router = express.Router();
 const {loggedIn} = require(`../middlewares/isLoggedIn`);
 const {getHome,
        getAllLists,
-       getList} = require(`../controllers/lists`);
+       getList,
+       postList} = require(`../controllers/lists`);
 
 // @route   GET `/`
 // @desc    render index.html page
@@ -20,5 +21,10 @@ router.get(`/api/v1/lists`, loggedIn, getAllLists);
 // @desc    get particular list
 // @access  private (only user can get his own list)
 router.get(`/api/v1/list/:listId`, loggedIn, getList);
+
+// @route   POST `/api/v1/add-list`
+// @desc    add new list
+// @access  private (only user can new list)
+router.post(`/api/v1/add-list`, loggedIn, postList);
 
 module.exports = router;

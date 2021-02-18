@@ -3,6 +3,8 @@ const path = require(`path`);
 const asyncHandler = require(`../middlewares/asyncHandler`);
 const ErrorResponse = require(`../utils/errorResponse`);
 const List = require(`../models/list`);
+const User = require(`../models/user`);
+const {Validation, Value} = require(`../utils/validation`);
 
 // @route   GET `/`
 // @desc    render index.html page
@@ -79,3 +81,55 @@ exports.getList = asyncHandler(async (req, res, next) => {
   });
 
 });
+
+// @route   POST `/api/v1/add-list`
+// @desc    add new list
+// @access  private (only user can new list)
+exports.postList = asyncHandler(async (req, res, next) => {
+  
+  // validation
+  // validate title of list
+  const validateTitle = new Value(req.body.params.title);
+  validateTitle.require(`title`);
+  validateTitle.maxLength(60);
+
+  // check that user enter todos
+  if(!req.body.params.todos[0]) {
+    return next(new ErrorResponse(400, `please add at least one todo.`));
+  }
+  
+  // validate todos
+  let todos = req.body.params.todos;
+
+  todos.forEach(element => {
+
+    const validateTodo = new Validation(element);
+    validateTodo.required(`description`, `done`);
+
+    // validate description property
+    validateTodo.validator.description.maxLength(5000);
+
+    // validation done property
+    validateTodo.validator.done.isBoolean();
+
+  });
+
+  // add new list
+  const newList = await List.create({
+    title: req.body.params.title,
+    todos: req.body.params.todos,
+    user: req.user
+  });
+
+  // send response
+  res.status(201).json({
+    success: true,
+    message: `list created successfully.`
+  });
+
+  // add new list id to user document
+  const currentUser = await User.findById(req.user);
+  currentUser.lists.push(newList._id);
+
+});
+

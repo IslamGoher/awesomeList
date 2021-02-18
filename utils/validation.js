@@ -91,6 +91,16 @@ class Value {
   constructor(value) {
     this.value = value;
   }
+
+  // require function
+  require(name) {
+
+    // check is value exists or not
+    if(!this.value) {
+      throw new ErrorResponse(400, `please add a/an ${name}.`);
+    }
+
+  }
   
   // minLength function
   minLength(num = 0) {
@@ -137,9 +147,35 @@ class Value {
     if(!emailMatch.test(this.value)) {
       throw new ErrorResponse(400, `please enter valid email.`);
     }
+
+    return true;
   
+  }
+
+  // isBoolean function
+  isBoolean() {
+
+    // check if the value is boolean
+    if(this.value != `true` && this.value != `false` && typeof(this.value) !== `boolean`) {
+      throw new ErrorResponse(400, `the value must be Boolean.`);
+    }
+
+    return true;
+
+  }
+
+  // isString function
+  isString() {
+
+    // check if the value is string
+    if(typeof(this.value) !== `string`) {
+      throw new ErrorResponse(400, `the value must be String.`);
+    }
+
+    return true;
+
   }
 
 }
 
-module.exports = Validation;
+module.exports = {Validation, Value};
