@@ -3,7 +3,6 @@ const path = require(`path`);
 const asyncHandler = require(`../middlewares/asyncHandler`);
 const ErrorResponse = require(`../utils/errorResponse`);
 const List = require(`../models/list`);
-const User = require(`../models/user`);
 const {Validation, Value} = require(`../utils/validation`);
 
 // @route   GET `/`
@@ -115,7 +114,7 @@ exports.postList = asyncHandler(async (req, res, next) => {
   });
 
   // add new list
-  const newList = await List.create({
+  await List.create({
     title: req.body.params.title,
     todos: req.body.params.todos,
     user: req.user
@@ -127,9 +126,7 @@ exports.postList = asyncHandler(async (req, res, next) => {
     message: `list created successfully.`
   });
 
-  // add new list id to user document
-  const currentUser = await User.findById(req.user);
-  currentUser.lists.push(newList._id);
+  console.log(req.user)
 
 });
 
