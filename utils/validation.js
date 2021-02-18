@@ -41,7 +41,7 @@ class Validation {
   constructor(validator) {
 
     // check if input is object and not equal to null
-    if(typeof(validator) === `object` && typeof(validator) !== null) {
+    if(typeof(validator) === `object` && typeof(validator) !== null && validator) {
       
       this.validator = {...validator};
       
