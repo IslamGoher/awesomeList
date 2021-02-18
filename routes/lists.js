@@ -6,7 +6,8 @@ const {getHome,
        getAllLists,
        getList,
        postList,
-       putList} = require(`../controllers/lists`);
+       putList,
+       deleteList} = require(`../controllers/lists`);
 
 // @route   GET `/`
 // @desc    render index.html page
@@ -32,5 +33,10 @@ router.post(`/api/v1/add-list`, loggedIn, postList);
 // @desc    update particular list
 // @access  private (only user can update his own list)
 router.put(`/api/v1/list/:listId`, loggedIn, putList);
+
+// @route   DELETE`/api/v1/list/:listId`
+// @desc    delete particular list
+// @access  private (only user can delete his own list)
+router.delete(`/api/v1/list/:listId`, loggedIn, deleteList);
 
 module.exports = router;

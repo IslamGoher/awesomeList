@@ -185,3 +185,29 @@ exports.putList = asyncHandler(async (req, res, next) => {
   });
 
 });
+
+// @route   DELETE`/api/v1/list/:listId`
+// @desc    delete particular list
+// @access  private (only user can delete his own list)
+exports.deleteList = asyncHandler(async (req, res, next) => {
+
+  // search on list
+  let list = await List.findById(req.params.listId);
+
+  // check if list is exist
+  if(!list) {
+    return next(new ErrorResponse(404, `there's no list found with givin id.`));
+  }
+
+  // check if user has authorized to update this list
+  if(list.user.toString() !== req.user.toString()) {
+    return next(new ErrorResponse(403, `you don't authorized to access this content.`));
+  }
+
+  // delete list
+  await List.remove({_id: list._id});
+  
+  // send response
+  res.status(204);
+
+});
