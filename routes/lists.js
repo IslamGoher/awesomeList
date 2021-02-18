@@ -5,7 +5,8 @@ const {loggedIn} = require(`../middlewares/isLoggedIn`);
 const {getHome,
        getAllLists,
        getList,
-       postList} = require(`../controllers/lists`);
+       postList,
+       putList} = require(`../controllers/lists`);
 
 // @route   GET `/`
 // @desc    render index.html page
@@ -26,5 +27,10 @@ router.get(`/api/v1/list/:listId`, loggedIn, getList);
 // @desc    add new list
 // @access  private (only user can new list)
 router.post(`/api/v1/add-list`, loggedIn, postList);
+
+// @route   PUT `/api/v1/list/:listId`
+// @desc    update particular list
+// @access  private (only user can update his own list)
+router.put(`/api/v1/list/:listId`, loggedIn, putList);
 
 module.exports = router;

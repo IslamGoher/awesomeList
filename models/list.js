@@ -12,7 +12,7 @@ const listSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    maxlength: [60, `title must be less than 30 characters.`]
+    maxlength: [60, `title must be less than 60 characters.`]
   },
   todos: {
     type: [{

@@ -59,7 +59,7 @@ exports.getList = asyncHandler(async (req, res, next) => {
   if(!list) {
     return next(new ErrorResponse(404, `there's no list found with givin id.`));
   }
-
+  
   // check if user authorized to access this list
   if(list.user.toString() !== req.user.toString()) {
     return next(new ErrorResponse(403, `you don't authorized to access this content.`));
@@ -93,7 +93,7 @@ exports.postList = asyncHandler(async (req, res, next) => {
   validateTitle.maxLength(60);
 
   // check that user enter todos
-  if(!req.body.params.todos[0]) {
+  if(!req.body.params.todos || !req.body.params.todos[0]) {
     return next(new ErrorResponse(400, `please add at least one todo.`));
   }
   
@@ -126,7 +126,62 @@ exports.postList = asyncHandler(async (req, res, next) => {
     message: `list created successfully.`
   });
 
-  console.log(req.user)
-
 });
 
+// @route   PUT `/api/v1/list/:listId`
+// @desc    update particular list
+// @access  private (only user can update his own list)
+exports.putList = asyncHandler(async (req, res, next) => {
+
+  // search on list
+  let list = await List.findById(req.params.listId);
+
+  // check if list is exist
+  if(!list) {
+    return next(new ErrorResponse(404, `there's no list found with givin id.`));
+  }
+
+  // check if user has authorized to update this list
+  if(list.user.toString() !== req.user.toString()) {
+    return next(new ErrorResponse(403, `you don't authorized to access this content.`));
+  }
+
+  // validation
+  // validate title of list
+  const validateTitle = new Value(req.body.params.title);
+  validateTitle.require(`title`);
+  validateTitle.maxLength(60);
+
+  // check that user enter todos
+  if(!req.body.params.todos || !req.body.params.todos[0]) {
+    return next(new ErrorResponse(400, `please add at least one todo.`));
+  }
+  
+  // validate todos
+  let todos = req.body.params.todos;
+
+  todos.forEach(element => {
+
+    const validateTodo = new Validation(element);
+    validateTodo.required(`description`, `done`);
+
+    // validate description property
+    validateTodo.validator.description.maxLength(5000);
+
+    // validation done property
+    validateTodo.validator.done.isBoolean();
+
+  });
+
+  // update list
+  list.title = req.body.params.title;
+  list.todos = req.body.params.todos;
+  await list.save();
+
+  // send response
+  res.status(200).json({
+    success: true,
+    message: `list updated successfully.`
+  });
+
+});
