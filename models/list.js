@@ -28,7 +28,7 @@ const listSchema = new mongoose.Schema({
     validate: [todoValidation, `please add todo.`]
   },
   user: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     ref: `users`
   }
 });

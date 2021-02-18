@@ -40,7 +40,41 @@ exports.getAllLists = asyncHandler(async (req, res, next) => {
     data: {
       kind: `lists`,
       count: lists.length,
-      lists: lists
+      items: lists
+    }
+  });
+
+});
+
+// @route   GET `/api/v1/list/:listId`
+// @desc    get particular list
+// @access  private (only user can get his own list)
+exports.getList = asyncHandler(async (req, res, next) => {
+
+  // search on list
+  let list = await List.findById(req.params.listId);
+  
+  // check if list is exist
+  if(!list) {
+    return next(new ErrorResponse(404, `there's no list found with givin id.`));
+  }
+
+  // check if user authorized to access this list
+  if(list.user.toString() !== req.user.toString()) {
+    return next(new ErrorResponse(403, `you don't authorized to access this content.`));
+  }
+
+  // remove user id from list before send it to client
+  list = {...list._doc}
+  delete list.user;
+
+  // send response
+  res.status(200).json({
+    success: true,
+    message: `list data.`,
+    data: {
+      kind: `lists`,
+      items: [list]
     }
   });
 
