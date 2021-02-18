@@ -7,9 +7,11 @@ const morgan = require(`morgan`);
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const {errorHandler} = require(`./middlewares/errorHandler`);
+
 // load route files
 const auth = require(`./routes/auth`);
 const lists = require(`./routes/lists`);
+const user = require(`./routes/user`);
 const {getError} = require(`./controllers/error`);
 
 // Add config files
@@ -64,6 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Add routes files
 app.use(auth);
 app.use(lists);
+app.use(user);
 app.use(getError);
 
 // use error handler middleware
