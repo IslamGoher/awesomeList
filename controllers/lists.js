@@ -31,7 +31,7 @@ exports.getAllLists = asyncHandler(async (req, res, next) => {
 
   // check if user has any lists or not
   if(!lists[0]) {
-    return next(new ErrorResponse(404, `there's no lists in this page`));
+    return next(new ErrorResponse(404, `there's no lists in this page.`));
   }
 
   // send response

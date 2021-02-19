@@ -25,7 +25,8 @@ const listSchema = new mongoose.Schema({
         default: false
       }
     }],
-    validate: [todoValidation, `please add todo.`]
+    validate: [todoValidation, `please add todo.`],
+    _id: false
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
