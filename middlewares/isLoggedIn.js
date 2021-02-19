@@ -1,5 +1,8 @@
 // middleware function that checking if user logged in or not
 
+// using those middilewares require next question:
+//  who can access this route?
+
 // authentication cases:
 // 1 - logged in user try to access home page (or page that required auth)
 // 2 - logged in user try to access login page (or page that doesn't required auth)
