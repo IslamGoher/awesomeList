@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../public/css/login-register.css">
+  <!-- links css file -->
+  <link rel="stylesheet" href="../css/login-register.css">
+  <!-- link main global css file -->
+  <link rel="stylesheet" href="../css/app.css">
+  <!-- link font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   <title> | AwesomeList</title>
 </head>
 <body>
+<div class="container">
+  <!-- main which contains the title and data -->
   <main>
+    <!-- main data -->
     <h1 class="title">
       Awesome List
     </h1>
@@ -15,48 +23,56 @@
       This is an open-source project developed for learning and practicing purposes. <br>
       Because we believe in lists and notes we decided to create our very own AwesomeList.
     </p>
-
-    <h4>developed by:</h4>
+    <!-- ---------- -->
+    <!-- developers data -->
+    <h3>developed by:</h3>
     <div class="devs-container">
       <ul class="devs">
+        <!-- sobhi -->
         <li class="dev">
-          <img src="" alt="mohamed sobhi's avatar" class="dev-avatar">
+          <img src="https://avatars.githubusercontent.com/u/63759344?s=460&u=f088cc4695ac2b21a180466e805c0c1ad4b8c891&v=4" alt="mohamed sobhi's avatar" class="dev-avatar">
           <p class="dev-name">
-            Mohamed sobhi<br><span class="dev-title">Frontend</span>
+            Mohamed sobhi
           </p>
+          <span class="dev-title">Frontend</span>
           <ul class="links">
             <li>
-              github
+              <i class="fab fa-github"></i>
             </li>
             <li>
-              twitter
+              <i class="fab fa-twitter"></i>
             </li>
           </ul>
         </li>
-
+        <!-- ------- -->
+        <!-- islam -->
         <li class="dev">
-          <img src="" alt="Islam Goher's avatar" class="dev-avatar">
+          <img src="https://avatars.githubusercontent.com/u/61825588?s=400&u=f61250daf49eefda3e33625ecaba1b3d76ad402c&v=4" alt="Islam Goher's avatar" class="dev-avatar">
           <p class="dev-name">
-            Islam Goher<br><span class="dev-title">Backend</span>
+            Islam Goher
           </p>
+          <span class="dev-title">Backend</span>
           <ul class="links">
             <li>
-              github
+              <i class="fab fa-github"></i>
             </li>
             <li>
-              twitter
+              <i class="fab fa-twitter"></i>
             </li>
           </ul>
         </li>
+        <!-- ------ -->
       </ul>
     </div>
-
-    <a href="#about">About</a>
-
+    <!-- ---------------- -->
+    <a href="#about" class="secondary-btn">About</a>
   </main>
+  <!-- ----------------- -->
 
+  <!-- forms container (login-register) -->
   <div class="forms-container">
 
+    <!-- login form -->
     <form method="post" class="login">
       <section>
           <h2>Login</h2>
@@ -79,10 +95,10 @@
           <p> <button type="submit">Sign-in</button> </p>
       </section>
     </form>
-
+    <!-- --------------- -->
     <hr>
     <p>or join now</p>
-
+    <!-- register form  -->
     <form method="post" class="register">
       <section>
           <h2>Register</h2>
@@ -112,10 +128,12 @@
           <p> <button type="submit">Join</button> </p>
       </section>
     </form>
-    
+    <!-- ------------- -->
   </div>
+  <!-- --------------- -->
 
+</div>
 
-  <script src="../public/js/login-register.js"></script>
+  <script src="../js/login-register.js"></script>
 </body>
 </html>
