@@ -37,10 +37,10 @@
           <span class="dev-title">Frontend</span>
           <ul class="links">
             <li>
-              <i class="fab fa-github"></i>
+              <a href="#"><i class="fab fa-github"></i></a>
             </li>
             <li>
-              <i class="fab fa-twitter"></i>
+              <a><i class="fab fa-twitter"></i></a>
             </li>
           </ul>
         </li>
@@ -54,10 +54,10 @@
           <span class="dev-title">Backend</span>
           <ul class="links">
             <li>
-              <i class="fab fa-github"></i>
+              <a href="#"><i class="fab fa-github"></i></a>
             </li>
             <li>
-              <i class="fab fa-twitter"></i>
+              <a><i class="fab fa-twitter"></i></a>
             </li>
           </ul>
         </li>
@@ -70,65 +70,49 @@
   <!-- ----------------- -->
 
   <!-- forms container (login-register) -->
-  <div class="forms-container">
-
-    <!-- login form -->
-    <form method="post" class="login">
-      <section>
-          <h2>Login</h2>
-          <p>
-            <label for="username">
-              <span>Username: </span>
-              <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="text" id="username" name="username">
-          </p>
-          <p>
-            <label for="pwd">
-              <span>Password: </span>
-              <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="password" id="pwd" name="password">
-          </p>
-      </section>
-      <section>
-          <p> <button type="submit">Sign-in</button> </p>
-      </section>
-    </form>
-    <!-- --------------- -->
-    <hr>
-    <p>or join now</p>
-    <!-- register form  -->
-    <form method="post" class="register">
-      <section>
-          <h2>Register</h2>
-          <p>
-            <label for="username">
-              <span>Username: </span>
-              <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="text" id="username" name="username">
-          </p>
-          <p>
-            <label for="mail">
-              <span>E-mail: </span>
-              <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="email" id="mail" name="mail">
-          </p>
-          <p>
-            <label for="pwd">
-              <span>Password: </span>
-              <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="password" id="pwd" name="password">
-          </p>
-      </section>
-      <section>
-          <p> <button type="submit">Join</button> </p>
-      </section>
-    </form>
-    <!-- ------------- -->
+  <div class="forms-container" id="formContainer">
+    <div class="form-container sign-up-container">
+      <form action="#" method="post" class="register">
+        <h3 class="dark-text">Create Account</h3>
+        <div class="social-container">
+          <a href="#" class="social dark-text"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social dark-text"><i class="fab fa-google"></i></a>
+        </div>
+        <span class="small-text">or use your email</span>
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button type="submit" class="signup-btn">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form action="#">
+        <h3 class="dark-text">Sign in</h3>
+        <div class="social-container">
+          <a href="#" class="social dark-text"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social dark-text"><i class="fab fa-google"></i></a>
+        </div>
+        <span class="small-text">or use your account</span>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <a href="#" class='dark-text small-text'>Forgot your password?</a>
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-top">
+          <h2>Welcome Back!</h2>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-bottom">
+          <h2>Hello, Friend!</h2>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- --------------- -->
 
