@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "cross-env NODE_ENV='development' nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -12,12 +13,31 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/SamGoher/awesomeList/issues"
   },
   "homepage": "https://github.com/SamGoher/awesomeList#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.0",
+    "connect-livereload": "^0.6.1",
+    "connect-mongodb-session": "^2.4.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "livereload": "^0.9.1",
+    "mongoose": "^5.11.16",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.4.18",
+    "nodemailer-sendgrid-transport": "^0.2.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7"
   }
 }

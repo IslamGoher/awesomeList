@@ -1,0 +1,9 @@
+// creating class that inherits from Error class
+class ErrorResponse extends Error {
+  constructor(statusCode, message) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
+
+module.exports = ErrorResponse;
