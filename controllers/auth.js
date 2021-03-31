@@ -5,6 +5,8 @@ const asyncHandler = require(`../middlewares/asyncHandler`);
 const {Validation} = require(`../utils/validation`);
 const User = require(`../models/user`);
 const ErrorResponse = require(`../utils/errorResponse.js`);
+const fetch = require(`node-fetch`);
+const gapi = require(`googleapis`);
 
 // @route   GET `/auth`
 // @desc    render login-register.html page
@@ -32,6 +34,11 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
   const currentUser = await User.findOne({email: req.body.params.email});
 
   if(!currentUser) {
+    return next(new ErrorResponse(401, `there's an error ocured with email or password.`));
+  }
+
+  // check if account is third party account
+  if(currentUser.thirdPartyAccount) {
     return next(new ErrorResponse(401, `there's an error ocured with email or password.`));
   }
 
@@ -107,5 +114,90 @@ exports.deleteLogout = asyncHandler(async (req, res, next) => {
 
   });
   
+
+});
+
+// @route   GET `/api/v1/google-oauth`
+// @desc    generate google third party auth url and redirect client to it
+// @access  public
+exports.getGoogleOauth = asyncHandler(async (req, res, next) => {
+
+  // enter google client id, secret and redirect url to let google cloud identify our server as client
+  const oauth2Client = new gapi.Auth.OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_REDIRECT_URI
+  );
+
+  // determine that which data we need from google email of user by entering links like bellow
+  const scopes = [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    `https://www.googleapis.com/auth/userinfo.email`
+  ];
+
+  // generate google third party auth url
+  const url = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: scopes
+  });
+
+  // redirect client to google third party auth url
+  res.status(302).redirect(url);
+
+});
+
+// @route   GET `/api/v1/google-callback`
+// @desc    get user data from google oauth and authenticate user
+// @access  public
+exports.getGoogleCallback = asyncHandler(async (req, res, next) => {
+
+  // enter google client id, secret and redirect url to let google cloud identify our server as client
+  const oauth2Client = new gapi.Auth.OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_REDIRECT_URI
+  );
+
+  // get user access token to get user data
+  const {tokens} = await oauth2Client.getToken(req.query.code);
+
+  const api = `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`;
+
+  // fetch 'api' url to get user data
+  let userData = await fetch(api);
+  userData = await userData.json();
+
+  // login
+
+  // check existation of user email to determine the next process if login or signup
+  let currentUser = await User.findOne({email: userData.email});
+
+  if(currentUser) {
+
+    // create session for user
+    req.session.user = currentUser._id;
+    req.session.loggedIn = true;
+
+    // send response
+    res.status(302).redirect(`/`);
+
+  }
+  else if(!currentUser) {
+
+    // create new user
+    const newUser = await User.create({
+      name: userData.name,
+      email: userData.email,
+      thirdPartyAccount: true
+    });
+
+    // create session for user
+    req.session.user = newUser._id;
+    req.session.loggedIn = true;
+
+    // send response
+    res.status(302).redirect(`/`);
+
+  }
 
 });

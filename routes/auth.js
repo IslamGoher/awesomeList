@@ -5,7 +5,9 @@ const {loggedIn, notLoggedIn} = require(`../middlewares/isLoggedIn`);
 const {getAuth,
        postLogin,
        postSignup,
-       deleteLogout} = require(`../controllers/auth`);
+       deleteLogout,
+       getGoogleOauth,
+       getGoogleCallback} = require(`../controllers/auth`);
 
 // @route   GET `/auth`
 // @desc    render login-register.html page
@@ -26,5 +28,15 @@ router.post(`/api/v1/signup`, notLoggedIn, postSignup);
 // @desc    logout and clear session
 // @access  private
 router.delete(`/api/v1/logout`, loggedIn, deleteLogout);
+
+// @route   GET `/api/v1/google-oauth`
+// @desc    generate google third party auth url and redirect client to it
+// @access  public
+router.get(`/api/v1/google-oauth`, notLoggedIn, getGoogleOauth);
+
+// @route   GET `/api/v1/google-callback`
+// @desc    get user data from google oauth and authenticate user
+// @access  public
+router.get(`/api/v1/google-callback`, notLoggedIn, getGoogleCallback);
 
 module.exports = router;
