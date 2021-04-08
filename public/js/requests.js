@@ -10,7 +10,8 @@ const signupRequest = (data,url) => {
 	})
 	.then(response => response.json())
 	.then(data => {
-		console.log('Success:', data);
+		// console.log('Success:', data.redirectURL);
+		window.location.replace(`http://localhost:3000${data.redirectURL}`);
 	})
 	.catch((error) => {
 		console.error('Error:', error);
@@ -23,6 +24,9 @@ const logoutRequest = (url) => {
     method: 'DELETE',
   })
   .then(response => response.json())
-  .then(data => console.log('Success:', data))
+  .then(data => {
+		// console.log('Success:', data);
+		window.location.replace(`http://localhost:3000${data.redirectURL}`);
+	})
   .catch(error => console.error('Error:', error));
 }
