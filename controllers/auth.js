@@ -54,7 +54,11 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
   req.session.loggedIn = true;
 
   // send response
-  res.status(302).redirect(`/`);
+  res.status(200).json({
+    success: `true`,
+    message: `user successfully signed in.`,
+    redirectURL: `/`
+  });
 
 });
 
@@ -97,7 +101,11 @@ exports.postSignup = asyncHandler(async (req, res, next) => {
   req.session.loggedIn = true;
 
   // send response
-  res.status(302).redirect(`/`);
+  res.status(201).json({
+    success: `true`,
+    message: `user successfully signed up.`,
+    redirectURL: `/`
+  });
 
 });
 
@@ -110,7 +118,11 @@ exports.deleteLogout = asyncHandler(async (req, res, next) => {
   req.session.destroy(() => {
 
     // send response
-    res.status(204).redirect(`/auth`);
+    res.status(200).json({
+      success: `true`,
+      message: `user successfully logged out.`,
+      redirectURL: `/auth`
+    });
 
   });
   
