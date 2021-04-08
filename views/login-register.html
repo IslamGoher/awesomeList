@@ -72,17 +72,18 @@
   <!-- forms container (login-register) -->
   <div class="forms-container" id="formContainer">
     <div class="form-container sign-up-container">
-      <form action="#" method="post" class="register">
+      <form method="post" class="register">
         <h3 class="dark-text">Create Account</h3>
         <div class="social-container">
           <a href="#" class="social dark-text"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="social dark-text"><i class="fab fa-google"></i></a>
         </div>
         <span class="small-text">or use your email</span>
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button type="submit" class="signup-btn">Sign Up</button>
+        <input type="text" name="name" placeholder="Name" required/>
+        <input type="email" name="email" placeholder="Email" required/>
+        <input type="password" name="password" placeholder="Password" minlength="8" required/>
+        <button type="submit" class="signup-btn" id="signupBtn">Sign Up</button>
+        <p class="signup-error">*</p>
       </form>
     </div>
     <div class="form-container sign-in-container">
@@ -117,7 +118,7 @@
   <!-- --------------- -->
 
 </div>
-
+  <script src="../js/requests.js"></script>
   <script src="../js/login-register.js"></script>
 </body>
 </html>
