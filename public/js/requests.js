@@ -1,6 +1,6 @@
 
 // signup form post request
-const signupRequest = (data,url) => {
+const authPostRequest = (url,data) => {
   fetch(url , {
 		method: 'POST',
 		headers: {
@@ -8,15 +8,22 @@ const signupRequest = (data,url) => {
 		},
 		body: JSON.stringify(data),
 	})
-	.then(response => response.json())
+	.then(response => {
+		if (response.status === 401) {
+			unauthorizedError();
+		}else{
+			return response.json();
+		}
+	})
 	.then(data => {
-		// console.log('Success:', data.redirectURL);
+		// console.log('Success:', data);
 		window.location.replace(`http://localhost:3000${data.redirectURL}`);
 	})
 	.catch((error) => {
 		console.error('Error:', error);
 	});
 }
+
 
 // logout DELETE request
 const logoutRequest = (url) => {
@@ -30,3 +37,4 @@ const logoutRequest = (url) => {
 	})
   .catch(error => console.error('Error:', error));
 }
+

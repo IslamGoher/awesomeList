@@ -87,17 +87,18 @@
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form action="#">
+      <form method="post" class="login">
         <h3 class="dark-text">Sign in</h3>
         <div class="social-container">
           <a href="#" class="social dark-text"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="social dark-text"><i class="fab fa-google"></i></a>
         </div>
         <span class="small-text">or use your account</span>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
         <a href="#" class='dark-text small-text'>Forgot your password?</a>
-        <button type="submit">Sign In</button>
+        <button type="submit" id="loginBtn">Sign In</button>
+        <p class="login-error">*</p>
       </form>
     </div>
     <div class="overlay-container">
