@@ -3,15 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- links css file -->
   <link rel="stylesheet" href="../css/index.css">
   <!-- link main global css file -->
   <link rel="stylesheet" href="../css/app.css">
+  <!-- link font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   <title> | AwesomeList</title>
 </head>
 <body>
-  <h3 style="width: 70%; margin: auto; text-align: center; margin-top: 50px;">Great project coming-soon by the backend alien Sam goher and the frontend artist Mohammed Sobhi</h3>
+  <header>
+    <nav class="nav-bar">
+      <div class="logo">
+        Awesome-List ✓
+      </div>
+      <ul class="nav-items">
+        <li class="nav-item"><button class="logout-btn">logout</button></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="top-section">
+      <h1>Welcome Back productive Doge</h1>
+      <button class="create-btn">+ New list</button>
 
-  <button class="logout-btn">logout</button>
+      <div class="popup-wrapper">
+        <div class="popup create-new">
+          <form>
+            <input type="text" name="newList" id="newList" placeholder="Enter the list title" required>
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="lists-container">
+
+
+      <div class="list">
+        <div class="list-header">
+          <h2 class="list-title">some title</h2>
+          <button class="list-menu">
+            <i class="fas fa-ellipsis-v"></i>
+            <ul class="options">
+              <li>Change title</li>
+              <hr style="margin: 7px 0;">
+              <li>Delete</li>
+            </ul>
+          </button>
+        </div>
+        <div class="list-body">
+          <ul class="todos">
+
+            <li class="todo todo-done">
+              <p class="todo-title">some title</p>
+              <div class="todo-control">
+                <div class="check">
+                  ✓
+                </div>
+                <div class="todo-delete">
+                  x
+                </div>
+              </div>
+            </li>
+            <li class="todo">
+              <p class="todo-title">some title</p>
+              <div class="todo-control">
+                <div class="check">
+                  ✓
+                </div>
+                <div class="todo-delete">
+                  x
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+        <div class="list-footer">
+          <form class="enter-todo" action="">
+            <input type="text" name="todo" id="" placeholder="Enter a new todo" required>
+            <button type="submit"><i class="fas fa-arrow-up"></i></button>
+          </form>
+        </div>
+      </div>
+
+
+      <div class="list">
+        <div class="list-header">
+          <h2 class="list-title">some title</h2>
+          <button class="list-menu">
+            <i class="fas fa-ellipsis-v"></i>
+            <ul class="options">
+              <li>Change title</li>
+              <hr style="margin: 7px 0;">
+              <li>Delete</li>
+            </ul>
+          </button>
+        </div>
+        <div class="list-body">
+          <ul class="todos">
+
+            <li class="todo todo-done">
+              <p class="todo-title">some title</p>
+              <div class="todo-control">
+                <div class="check">
+                  ✓
+                </div>
+                <div class="todo-delete">
+                  x
+                </div>
+              </div>
+            </li>
+            <li class="todo">
+              <p class="todo-title">some title</p>
+              <div class="todo-control">
+                <div class="check">
+                  ✓
+                </div>
+                <div class="todo-delete">
+                  x
+                </div>
+              </div>
+            </li>
+            <li class="todo">
+              <p class="todo-title">some title</p>
+              <div class="todo-control">
+                <div class="check">
+                  ✓
+                </div>
+                <div class="todo-delete">
+                  x
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+        <div class="list-footer">
+          <form class="enter-todo" action="">
+            <input type="text" name="todo" id="" placeholder="Enter a new todo" required>
+            <button type="submit"><i class="fas fa-arrow-up"></i></button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>
+    this is an opensource project created by Islam Goher <a href="https://github.com/SamGoher" target="_blank"><i class="fab fa-github"></i></a> and Mohammed sobhi <a href="https://github.com/mohammedsobhi" target="_blank"><i class="fab fa-github"></i></a></p>
+  </footer>
 
   <script src="../js/requests.js"></script>
   <script src="../js/index.js"></script>

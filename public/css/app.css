@@ -27,7 +27,8 @@ li {
   font-family: "Roboto Mono", monospace;
 }
 
-a,button{
+a,
+button {
   cursor: pointer;
 }
 
@@ -42,10 +43,33 @@ a,button{
   background-color: rgb(100, 100, 100);
 }
 
-.dark-text{
+.dark-text {
   color: rgb(27, 27, 34);
 }
 
-.small-text{
+.small-text {
   font-size: 12px;
+}
+
+.popup-wrapper {
+  background: rgba(0, 0, 0, 0.61);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.popup {
+  background-color: hsl(210, 5%, 22%);
+  width: 50%;
+  height: 100px;
+  margin: 100px auto;
+  border: 2px solid #fff;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

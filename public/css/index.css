@@ -1,3 +1,294 @@
 body {
   background-color: hsl(210, 7%, 17%);
 }
+
+/* header and navigation bar */
+
+header {
+  background-color: hsl(210, 5%, 22%);
+}
+
+.nav-bar {
+  display: flex;
+  width: 70%;
+  height: 60px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #fff;
+  font-size: 20px;
+}
+
+.nav-items {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+/* ------------------- */
+
+/* top main section */
+main {
+  margin-top: 20px;
+  display: grid;
+  grid-template-areas:
+    "heading"
+    "lists";
+  gap: 20px;
+  justify-items: center;
+}
+
+main .top-section {
+  grid-area: heading;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.top-section h1 {
+  font-size: 20px;
+}
+.create-btn {
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 7px 20px;
+  border: none;
+  border-radius: 4px;
+  transition: ease-in 0.15s;
+  background-color: white;
+}
+
+.create-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 700px) {
+  main .top-section {
+    width: 80%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nav-bar {
+    width: 90%;
+  }
+}
+/* ---------------- */
+
+/* main container section */
+.lists-container {
+  grid-area: lists;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 80%;
+}
+
+.list-header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
+}
+
+.list-title {
+  font-size: 20px;
+}
+
+.list-menu {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  width: 20px;
+}
+
+.list-menu:focus-within .options {
+  display: block;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background-color: gray;
+  border-radius: 5px;
+  padding: 10px 20px;
+  right: -20px;
+  top: 28px;
+  min-width: 170px;
+}
+
+.options li {
+  list-style: none;
+  transition: ease-in 0.1s;
+}
+
+.options li:hover {
+  color: #000;
+  transform: scale(1.12);
+}
+
+.list {
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 400px;
+  max-height: 400px;
+  background-color: hsl(210, 5%, 22%);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo {
+  list-style: none;
+}
+
+.list-body {
+  width: 95%;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: hsl(210, 7%, 17%);
+  padding: 5px 10px 6px 10px;
+  border-radius: 5px;
+}
+
+.todo-done {
+  background: rgba(34, 34, 34, 0.301);
+  z-index: -1;
+}
+
+.todo-done .todo-title {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.432);
+}
+
+.todo-control {
+  display: flex;
+  gap: 10px;
+}
+
+.check,
+.todo-delete {
+  padding: 0 10px 2px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: ease-in 0.19s;
+}
+
+.check:hover,
+.todo-delete:hover {
+  opacity: 0.8;
+}
+
+.check {
+  background-color: rgb(105, 187, 160);
+}
+.todo-done .check {
+  background-color: rgba(96, 150, 132, 0.877);
+}
+
+.todo-delete {
+  background-color: rgb(177, 77, 77);
+}
+.todo-done .todo-delete {
+  background-color: rgba(177, 77, 77, 0.692);
+}
+
+.list-footer {
+  margin-top: auto;
+  margin-bottom: 10px;
+  width: 95%;
+}
+
+.enter-todo input[type="text"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  width: 81%;
+}
+.enter-todo button[type="submit"] {
+  padding: 5px 10px 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: ease-in 0.19s;
+  font-size: 16px;
+  font-weight: bold;
+  width: 15%;
+  background-color: rgb(210, 246, 255);
+  transition: ease-in 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(236, 251, 255);
+}
+/* ---------------- */
+
+/* footer */
+
+footer {
+  height: 40px;
+  width: 100%;
+  background-color: hsl(210, 5%, 22%);
+  color: #fff;
+  margin-top: 40px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+footer p {
+  margin-top: 6px;
+  text-align: center;
+}
+.logout-btn {
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 7px 20px;
+  border: none;
+  border-radius: 4px;
+  transition: ease-in 0.15s;
+  background-color: rgb(197, 87, 87);
+}
+
+.logout-btn:hover {
+  opacity: 0.85;
+}
+/* --------------- */
+
+/* create new popup */
+
+.create-new input[type="text"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+}
+.create-new button[type="submit"] {
+  padding: 3px 20px 5px 20px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+}
+/* -------------- */
